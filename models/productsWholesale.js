@@ -23,10 +23,6 @@ let productsWholesaleSchema = new Schema({
             type: String,
             default: "BGN",
             required: true
-        },
-        amount: {
-            type: String,
-            required: true
         }
     },
     img: {

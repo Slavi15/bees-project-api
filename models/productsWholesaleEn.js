@@ -23,10 +23,6 @@ const productsWholesaleENSchema = new Schema({
             type: String,
             default: "EUR",
             required: true
-        },
-        amount: {
-            type: String,
-            required: true
         }
     },
     img: {
