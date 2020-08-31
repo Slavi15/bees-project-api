@@ -12,7 +12,7 @@ const ProductWholeSaleEN = require('../models/productsWholesaleEn.js');
 
 const uri = process.env.MONGO_URI;
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 .then(() => {
     console.log('Connection with MongoDB established...')
 })

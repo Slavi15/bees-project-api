@@ -44,7 +44,7 @@ async function updateProductWholesale(req, res) {
 
 async function deleteProductWholesale(req, res) {
     try {
-        await ProductWholeSale.remove({ _id: req.params.productwholesaleid });
+        await ProductWholeSale.findByIdAndDelete({ _id: req.params.productwholesaleid });
         res.status(200).json({ message: "Product has been deleted" });
     } catch(err) {
         res.status(404).json({ message: err.message });

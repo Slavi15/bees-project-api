@@ -44,7 +44,7 @@ async function updateProductEN(req, res) {
 
 async function deleteProductEN(req, res) {
     try {
-        await ProductEN.remove({ _id: req.params.productenid });
+        await ProductEN.findByIdAndDelete({ _id: req.params.productenid });
         res.status(200).json({ message: "Product has been deleted" });
     } catch(err) {
         res.status(404).json({ message: err.message });
