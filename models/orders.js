@@ -34,37 +34,44 @@ const orderSchema = new Schema({
         required: [true, "Please enter a phone number"],
         validate: [isMobilePhone, isNumeric, "Invalid phone number"]
     },
-    products: {
-        title: {
-            type: String
-        },
-        price: {
-            value: {
-                type: Number
-            },
-            currency: {
+    products: [
+        {
+            title: {
                 type: String
-            }
-        },
-        quantity: {
-            type: Number
-        }
-    },
-    productswholesale: {
-        title: {
-            type: String
-        },
-        price: {
-            value: {
-                type: Number
             },
-            currency: {
-                type: String
+            price: {
+                value: {
+                    type: Number
+                },
+                currency: {
+                    type: String
+                }
+            },
+            quantity: {
+                type: Number
             }
-        },
-        quantity: {
-            type: Number
         }
+    ],
+    productswholesale: [
+        {
+            title: {
+                type: String
+            },
+            price: {
+                value: {
+                    type: Number
+                },
+                currency: {
+                    type: String
+                }
+            },
+            quantity: {
+                type: Number
+            }
+        }
+    ],
+    total: {
+        type: Number
     }
 });
 
