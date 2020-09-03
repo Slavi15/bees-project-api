@@ -7,7 +7,7 @@ const handleErrors = (err) => {
         lastName: '', 
         email: '', 
         address: '', 
-        phoneNumber: '' 
+        phoneNumber: ''
     };
 
     if(err.message.includes('order validation failed')) {
@@ -29,9 +29,9 @@ async function listOrders(req, res) {
 }
 
 async function createOrder(req, res) {
-    const { firstName, lastName, email, address, phoneNumber } = req.body;
+    const { firstName, lastName, email, address, phoneNumber, products, productswholesale } = req.body;
     try {
-        const newOrder = await Order.create({ firstName, lastName, email, address, phoneNumber });
+        const newOrder = await Order.create({ firstName, lastName, email, address, phoneNumber, products, productswholesale });
         res.status(201).json(newOrder);
     } catch (err) {
         const errors = handleErrors(err);
