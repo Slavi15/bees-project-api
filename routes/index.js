@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const router = express.Router();
 
 const { listProducts, createProduct, readProduct, updateProduct, deleteProduct } = require('./controllers/productsController.js');
@@ -7,8 +6,8 @@ const { listProductsEN, createProductEN, readProductEN, updateProductEN, deleteP
 const { listProductsWholesale, createProductWholesale, readProductWholesale, updateProductWholesale, deleteProductWholesale } = require('./controllers/productsWholesaleController.js');
 const { listProductsWholesaleEN, createProductWholesaleEN, readProductWholesaleEN, updateProductWholesaleEN, deleteProductWholesaleEN } = require('./controllers/productsWholesaleControllerEn.js');
 const { listOrders, createOrder, readOrder, updateOrder, deleteOrder } = require('./controllers/orderController.js');
+const { signInGet, signInPost, signUpGet, signUpPost } = require('./controllers/authController.js');
 
-router.use(cors());
 router.use(express.json());
 
 router
@@ -65,5 +64,15 @@ router
     .get(readOrder)
     .put(updateOrder)
     .delete(deleteOrder);
+
+router
+    .route('/signin')
+    .get(signInGet)
+    .post(signInPost);
+
+router
+    .route('/signup')
+    .get(signUpGet)
+    .post(signUpPost)
 
 module.exports = router;
