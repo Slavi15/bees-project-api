@@ -80,4 +80,10 @@ const signUpPost = async (req, res) => {
     }
 };
 
-module.exports = { signUpGet, signInGet, signUpPost, signInPost };
+const logOutGet = (req, res, next) => {
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.redirect('http://localhost:3000');
+    next();
+}
+
+module.exports = { signUpGet, signInGet, signUpPost, signInPost, logOutGet };

@@ -6,7 +6,7 @@ const { listProductsEN, createProductEN, readProductEN, updateProductEN, deleteP
 const { listProductsWholesale, createProductWholesale, readProductWholesale, updateProductWholesale, deleteProductWholesale } = require('./controllers/productsWholesaleController.js');
 const { listProductsWholesaleEN, createProductWholesaleEN, readProductWholesaleEN, updateProductWholesaleEN, deleteProductWholesaleEN } = require('./controllers/productsWholesaleControllerEn.js');
 const { listOrders, createOrder, readOrder, updateOrder, deleteOrder } = require('./controllers/orderController.js');
-const { signInGet, signInPost, signUpGet, signUpPost } = require('./controllers/authController.js');
+const { signInGet, signInPost, signUpGet, signUpPost, logOutGet } = require('./controllers/authController.js');
 
 router.use(express.json());
 
@@ -74,5 +74,9 @@ router
     .route('/signup')
     .get(signUpGet)
     .post(signUpPost)
+
+router
+    .route('/logout')
+    .get(logOutGet)
 
 module.exports = router;

@@ -31,9 +31,9 @@ async function listOrders(req, res) {
 async function createOrder(req, res) {
     const { firstName, lastName, email, address, phoneNumber, products, productswholesale, total } = req.body;
     try {
-        const newOrder = await Order.create({ firstName, lastName, email, address, phoneNumber, products, productswholesale, total });
+        const order = await Order.create({ firstName, lastName, email, address, phoneNumber, products, productswholesale, total });
         console.log(req.body);
-        res.status(201).json(newOrder);
+        res.status(201).json(order);
     } catch (err) {
         const errors = handleErrors(err);
         res.status(500).json({ errors });
