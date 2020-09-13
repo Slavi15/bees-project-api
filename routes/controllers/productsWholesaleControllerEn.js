@@ -1,6 +1,6 @@
 const ProductWholeSaleEN = require('../../models/productsWholesaleEn.js');
 
-async function listProductsWholesaleEN(req, res) {
+const listProductsWholesaleEN = async (req, res) => {
     try {
         const productwholesaleen = await ProductWholeSaleEN.find();
         res.status(200).json(productwholesaleen)
@@ -9,7 +9,7 @@ async function listProductsWholesaleEN(req, res) {
     }
 }
 
-async function createProductWholesaleEN(req, res) {
+const createProductWholesaleEN = async (req, res) => {
     const productwholesaleen = new ProductWholeSaleEN(req.body)
     try {
         const newProduct = await productwholesaleen.save();
@@ -19,7 +19,7 @@ async function createProductWholesaleEN(req, res) {
     }
 }
 
-async function readProductWholesaleEN(req, res, next) {
+const readProductWholesaleEN = async (req, res, next) => {
     let productwholesaleen;
     try {
         productwholesaleen = await ProductWholeSaleEN.findById(req.params.productwholesaleenid);
@@ -33,7 +33,7 @@ async function readProductWholesaleEN(req, res, next) {
     next();
 }
 
-async function updateProductWholesaleEN(req, res) {
+const updateProductWholesaleEN = async (req, res) => {
     try {
         const productwholesaleen = await ProductWholeSaleEN.findOneAndUpdate({ _id: req.params.productwholesaleenid }, req.body, { new: true });
         res.status(200).json(productwholesaleen);
@@ -42,7 +42,7 @@ async function updateProductWholesaleEN(req, res) {
     }
 }
 
-async function deleteProductWholesaleEN(req, res) {
+const deleteProductWholesaleEN = async (req, res) => {
     try {
         await ProductWholeSaleEN.findByIdAndDelete({ _id: req.params.productwholesaleenid });
         res.status(200).json({ message: "Product has been deleted" });

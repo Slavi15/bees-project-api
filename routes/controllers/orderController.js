@@ -19,7 +19,7 @@ const handleErrors = (err) => {
     return errors;
 }
 
-async function listOrders(req, res) {
+const listOrders = async (req, res) => {
     try {
         const order = await Order.find();
         res.status(200).json(order);
@@ -28,19 +28,19 @@ async function listOrders(req, res) {
     }
 }
 
-async function createOrder(req, res) {
+const createOrder = async (req, res) => {
     const { firstName, lastName, email, address, phoneNumber, products, productswholesale, total } = req.body;
     try {
         const order = await Order.create({ firstName, lastName, email, address, phoneNumber, products, productswholesale, total });
         console.log(req.body);
-        res.status(201).json(order);
+        res.status(201).json({ order });
     } catch (err) {
         const errors = handleErrors(err);
         res.status(500).json({ errors });
     }
 }
 
-async function readOrder(req, res, next) {
+const readOrder = async (req, res, next) => {
     let order;
     try {
         order = await Order.findById(req.params.orderid);
@@ -54,7 +54,7 @@ async function readOrder(req, res, next) {
     next();
 }
 
-async function updateOrder(req, res) {
+const updateOrder = async (req, res) => {
     try {
         const order = await Order.findOneAndUpdate({ _id: req.params.orderid }, req.body, { new: true });
         res.status(200).json(order);
@@ -63,7 +63,7 @@ async function updateOrder(req, res) {
     }
 }
 
-async function deleteOrder(req, res) {
+const deleteOrder = async (req, res) => {
     try {
         await Order.findByIdAndDelete({ _id: req.params.orderid });
         res.status(200).json({ message: "Order has been deleted" });

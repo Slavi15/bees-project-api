@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const handleErrors = (err) => {
     console.log(err.message, err.code);
-    let errors = { 
+    const errors = {
         email: '', 
         password: '' 
     };
@@ -38,11 +38,11 @@ const createToken = (id) => {
     return jwt.sign({ id }, JWT_TOKEN, { expiresIn: maxAge });
 }
 
-async function signInGet(req, res) {
+const signInGet = (req, res) => {
     try {
-        res.status(200).send('sign in')
+        res.status(200).send('sign in');
     } catch (err) {
-        
+        console.log(err.message);
     }
 };
 
@@ -61,9 +61,9 @@ const signInPost = async(req, res) => {
 
 async function signUpGet(req, res) {
     try {
-        res.status(200).render('sign up')
+        res.status(200).render('sign up');
     } catch (err) {
-        
+        console.log(err.message);
     }
 };
 

@@ -5,6 +5,7 @@ require('dotenv').config();
 require('./config/db.js');
 const routes = require('./routes/index.js');
 const cookieParser = require('cookie-parser');
+const { checkUser } = require('./middleware/authMiddleware.js');
 
 const app = express();
 app.set('json spaces', 4);
@@ -15,6 +16,8 @@ app.use(helmet());
 app.use(cookieParser());
 
 app.use('/api', routes);
+
+app.get('http://localhost:3000/*', checkUser);
 
 const port = process.env.PORT || 8000;
 

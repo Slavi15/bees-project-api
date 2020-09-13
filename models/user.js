@@ -41,10 +41,10 @@ userSchema.statics.signIn = async function(email, password) {
         if(auth) {
             return user;
         } else {
-            throw new Error('Incorrect password');
+            throw Error('Incorrect password');
         }
     } else {
-        throw new Error('Incorrect email');
+        throw Error('Incorrect email');
     }
 }
 

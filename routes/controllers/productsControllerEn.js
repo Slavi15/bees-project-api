@@ -1,6 +1,6 @@
 const ProductEN = require('../../models/productsEn.js');
 
-async function listProductsEN(req, res) {
+const listProductsEN = async (req, res) => {
     try {
         const producten = await ProductEN.find();
         res.status(200).json(producten)
@@ -9,7 +9,7 @@ async function listProductsEN(req, res) {
     }
 }
 
-async function createProductEN(req, res) {
+const createProductEN = async (req, res) => {
     const producten = new ProductEN(req.body)
     try {
         const newProduct = await producten.save();
@@ -19,7 +19,7 @@ async function createProductEN(req, res) {
     }
 }
 
-async function readProductEN(req, res, next) {
+const readProductEN = async (req, res, next) => {
     let producten;
     try {
         producten = await ProductEN.findById(req.params.productenid);
@@ -33,7 +33,7 @@ async function readProductEN(req, res, next) {
     next();
 }
 
-async function updateProductEN(req, res) {
+const updateProductEN = async (req, res) => {
     try {
         const producten = await ProductEN.findOneAndUpdate({ _id: req.params.productenid }, req.body, { new: true });
         res.status(200).json(producten);
@@ -42,7 +42,7 @@ async function updateProductEN(req, res) {
     }
 }
 
-async function deleteProductEN(req, res) {
+const deleteProductEN = async (req, res) => {
     try {
         await ProductEN.findByIdAndDelete({ _id: req.params.productenid });
         res.status(200).json({ message: "Product has been deleted" });
