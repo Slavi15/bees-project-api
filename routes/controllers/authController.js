@@ -11,14 +11,16 @@ const handleErrors = (err) => {
 
     if(err.message === 'Incorrect email') {
         errors.email = 'That email is not registered';
+        return errors;
     }
 
     if(err.message === 'Incorrect password') {
         errors.password = 'That password is incorrect';
+        return errors;
     }
 
     if(err.code === 11000) {
-        errors.email = "that email is already connected to an account";
+        errors.email = "That email is already connected to an account";
         return errors;
     };
 
@@ -46,7 +48,7 @@ const signInGet = (req, res) => {
     }
 };
 
-const signInPost = async(req, res) => {
+const signInPost = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.signIn(email, password);
