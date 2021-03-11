@@ -52,24 +52,6 @@ const orderSchema = new Schema({
             }
         }
     ],
-    productswholesale: [
-        {
-            title: {
-                type: String
-            },
-            price: {
-                value: {
-                    type: Number
-                },
-                currency: {
-                    type: String
-                }
-            },
-            quantity: {
-                type: Number
-            }
-        }
-    ],
     total: {
         type: Number
     }

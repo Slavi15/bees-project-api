@@ -29,9 +29,9 @@ const listOrders = async (req, res) => {
 }
 
 const createOrder = async (req, res) => {
-    const { firstName, lastName, email, address, phoneNumber, products, productswholesale, total } = req.body;
+    const { firstName, lastName, email, address, phoneNumber, products, total } = req.body;
     try {
-        const order = await Order.create({ firstName, lastName, email, address, phoneNumber, products, productswholesale, total });
+        const order = await Order.create({ firstName, lastName, email, address, phoneNumber, products, total });
         console.log(req.body);
         res.status(201).json({ order });
     } catch (err) {

@@ -15,16 +15,18 @@ const userSchema = new Schema({
         type: String,
         required: [true, "Please enter a password"],
         minlength: [6, "Minimum pass length is 6 characters"]
+    },
+    role: {
+        type: String,
+        default: 'customer',
+        enum: ['guest', 'customer', 'admin']
+    },
+    token: {
+        type: String
     }
 });
 
 // this refers to the model
-
-// fire a function after doc saved to db
-userSchema.post('save', function(doc, next) {
-    console.log('New user has been created', doc);
-    next();
-});
 
 // fire a function before doc saved to db
 userSchema.pre('save', async function(next) {
