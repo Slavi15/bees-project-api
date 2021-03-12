@@ -36,8 +36,8 @@ router.use( async(req, res, next) => {
 router.get('/products', listProducts);
 router.get('products/:productid', allowIfLogged, readProduct);
 router.post('/products', allowIfLogged, grantAccess('createAny', 'product'), createProduct);
-router.put('/products/:productid', allowIfLogged, grantAccess('updateAny', 'product'), createProduct);
-router.delete('/products/:productid', allowIfLogged, grantAccess('deleteAny', 'product'), createProduct);
+router.put('/products/:productid', allowIfLogged, grantAccess('updateAny', 'product'), updateProduct);
+router.delete('/products/:productid', allowIfLogged, grantAccess('deleteAny', 'product'), deleteProduct);
 
 router.get('/orders', allowIfLogged, grantAccess('readAny', 'order'), listOrders);
 router.get('/orders/:orderid', allowIfLogged, grantAccess('readAny', 'order'), readOrder);
@@ -46,17 +46,17 @@ router.put('/orders/:orderid', allowIfLogged, grantAccess('updateAny', 'order'),
 router.delete('/orders/:orderid', allowIfLogged, grantAccess('deleteAny', 'order'), deleteOrder);
 
 router
-    .route('/signin')
+    .route('/auth/signin')
     .get(signInGet)
     .post(signInPost);
 
 router
-    .route('/signup')
+    .route('/auth/signup')
     .get(signUpGet)
     .post(signUpPost)
 
 router
-    .route('/logout')
+    .route('/auth/logout')
     .get(logOutGet)
 
 module.exports = router;

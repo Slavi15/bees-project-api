@@ -1,9 +1,10 @@
 const express = require('express');
-const helmet = require('helmet');
 const cors = require('cors');
 require('dotenv').config();
 require('./config/db.js');
 const routes = require('./routes/index.js');
+const helmet = require('helmet');
+const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(helmet());
+app.use(morgan('combined'));
 app.use(cookieParser());
 
 app.use('/api', routes);
