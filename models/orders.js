@@ -27,12 +27,15 @@ const orderSchema = new Schema({
     },
     address: {
         type: String,
-        required: [true, "Please enter an address"]
+        required: [true, "Please enter an address"],
+        minlength: [7, 'Minimum 7 characters needed for address information']
     },
     phoneNumber: {
         type: String,
         required: [true, "Please enter a phone number"],
-        validate: [isMobilePhone, isNumeric, "Invalid phone number"]
+        validate: [isMobilePhone, isNumeric, "Invalid phone number"],
+        minlength: [7, 'Minimum phone number length is 7 digits'],
+        maxlength: [15, 'Maximum phone number length is 15 digits']
     },
     products: [
         {
