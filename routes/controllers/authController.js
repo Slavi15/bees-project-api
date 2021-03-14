@@ -52,7 +52,7 @@ const signInPost = async (req, res) => {
         const maxAge = 1 * 24 * 60 * 60;
         const token = jwt.sign({ userId: user._id }, process.env.JWT_TOKEN, { expiresIn: maxAge });
         await User.findByIdAndUpdate(user._id, { token });
-        res.cookie('jwt', token, { maxAge: maxAge * 1000, domain: 'https://beesproject-client.herokuapp.com' });
+        res.cookie('jwt', token, { maxAge: maxAge * 1000, httpOnly: true, secure: true, domain: 'https://beesproject-client.herokuapp.com' });
         res.status(200).json({ 
             data: { email: user.email, role: user.role },
             token
@@ -70,7 +70,7 @@ const signUpPost = async (req, res) => {
         const maxAge = 1 * 24 * 60 * 60;
         const token = jwt.sign({ userId: user._id }, process.env.JWT_TOKEN, { expiresIn: maxAge });
         user.token = token;
-        res.cookie('jwt', token, { maxAge: maxAge * 1000, domain: 'https://beesproject-client.herokuapp.com' });
+        res.cookie('jwt', token, { maxAge: maxAge * 1000, httpOnly: true, secure: true, domain: 'https://beesproject-client.herokuapp.com' });
         res.status(201).json({ data: user, token });
     } catch (err) {
         const errors = handleErrors(err);
