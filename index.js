@@ -11,7 +11,7 @@ const app = express();
 app.set('json spaces', 4);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: 'https://beesproject-client.herokuapp.com' }));
+app.use(cors({ origin: 'https://beesproject-client.herokuapp.com', credentials: true }));
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(cookieParser());
