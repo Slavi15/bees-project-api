@@ -8,6 +8,11 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+
+app.use((req, res) => {
+    res.setHeader('Access-Control-Expose-Headers', 'Set-Cookie');
+})
+
 app.set('json spaces', 4);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
